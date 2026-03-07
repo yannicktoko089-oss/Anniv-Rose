@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire Rose !</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff69b4; /* Rose vif */
+            --bg-color: #fff0f5;    /* Rose très clair */
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+            animation: popIn 0.8s ease-out;
+        }
+        h1 { color: var(--primary-color); margin-bottom: 10px; }
+        p { font-size: 1.1rem; line-height: 1.5; }
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>🎂 Joyeux Anniversaire Rose !</h1>
+        <p>Une petite surprise digitale pour une personne exceptionnelle (et parfois un peu pénible, mais on t'aime quand même).</p>
+        <p>Prête pour la pluie de confettis ?</p>
+        
+        <button class="btn" onclick="lancerConfettis()">Clique ici ! 🥳</button>
+    </div>
+
+    <script>
+        function lancerConfettis() {
+            // Explosion de confettis
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff69b4', '#ff1493', '#ffffff']
+            });
+            
+            // Petit message après le clic (Optionnel)
+            setTimeout(() => {
+                alert("Passe une journée magique ! ✨");
+            }, 500);
+        }
+    </script>
+</body>
+</html>
