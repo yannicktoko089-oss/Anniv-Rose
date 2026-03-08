@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joyeux Anniversaire Rose !</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
             --rose-color: #ff6bad;
@@ -24,26 +24,6 @@
             text-align: center;
         }
 
-        /* Animation des petits coeurs en arrière-plan */
-        .hearts {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-        }
-
-        .heart {
-            position: absolute;
-            color: var(--rose-color);
-            opacity: 0.5;
-            animation: float 6s infinite ease-in;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-        }
-
         .card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
@@ -52,64 +32,37 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             max-width: 85%;
-            animation: fadeIn 1.5s ease-out;
+            z-index: 10;
         }
 
         h1 {
             color: var(--rose-color);
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 107, 173, 0.5);
         }
 
         p {
             font-size: 1.1rem;
             line-height: 1.6;
-            margin-bottom: 25px;
         }
 
-        .highlight {
+        .penible {
             font-style: italic;
-            font-size: 0.9rem;
-            opacity: 0.7;
+            font-size: 0.85rem;
+            opacity: 0.6;
             display: block;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="hearts" id="heart-container"></div>
-
-    <div class="card">
-        <h1>Joyeux anniversaire Rose ! 🌹</h1>
-        <p>
-            Une petite surprise digitale pour une personne exceptionnelle... 
-            <span class="highlight">(et parfois un peu pénible mais on t'aime quand même).</span>
-        </p>
-        <p><strong>Profite bien de ta journée, tu le mérites bien !</strong></p>
-    </div>
-
-    <script>
-        // Un petit script pour créer des coeurs aléatoires
-        const container = document.getElementById('heart-container');
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            container.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
-        }
-        setInterval(createHeart, 400);
-    </script>
-
-</body>
-</html>
+        .btn-confetti {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #ff6bad, #ff99cc);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 107, 173, 0.4);
+            transition: transform
