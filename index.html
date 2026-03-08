@@ -6,17 +6,11 @@
     <title>Joyeux Anniversaire Rose !</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        :root {
-            --rose-color: #ff6bad;
-            --soft-bg: #1a1a2e;
-        }
-
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--soft-bg);
+            font-family: sans-serif;
+            background-color: #1a1a2e; /* Fond bleu nuit */
             color: white;
             margin: 0;
-            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,44 +19,59 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            max-width: 85%;
-            z-index: 10;
+            background: #252545; /* Fond solide pour être sûr de le voir */
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #ff6bad;
+            width: 85%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         h1 {
-            color: var(--rose-color);
-            font-size: 2rem;
-            margin-bottom: 20px;
+            color: #ff6bad;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
         }
 
         p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .penible {
-            font-style: italic;
-            font-size: 0.85rem;
-            opacity: 0.6;
-            display: block;
-            margin-top: 5px;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
         .btn-confetti {
-            margin-top: 30px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 15px 25px;
+            font-size: 1.1rem;
             font-weight: bold;
             color: white;
-            background: linear-gradient(45deg, #ff6bad, #ff99cc);
+            background: #ff6bad;
             border: none;
-            border-radius: 50px;
+            border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 107, 173, 0.4);
-            transition: transform
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Joyeux anniversaire Rose ! 🌹</h1>
+        <p>Une petite surprise digitale pour une personne exceptionnelle (et parfois un peu pénible mais on t'aime quand même).</p>
+        <p><strong>Profite bien de ta journée, tu le mérites bien !</strong></p>
+        
+        <button class="btn-confetti" onclick="lancerConfetti()">Clique ici ! 🥳</button>
+    </div>
+
+    <script>
+        function lancerConfetti() {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff6bad', '#ffffff', '#ffedbc']
+            });
+        }
+    </script>
+
+</body>
+</html>
