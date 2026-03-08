@@ -2,153 +2,114 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Joyeux Anniversaire Rose !</title>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Outfit:wght@300;500&display=swap" rel="stylesheet">
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire Rose !</title>
+    <style>
+        :root {
+            --rose-color: #ff6bad;
+            --soft-bg: #1a1a2e;
+        }
 
-html, body {
-  height: 100%;
-}
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--soft-bg);
+            color: white;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
 
-body {
-  min-height: 100%;
-  background: radial-gradient(ellipse at 30% 20%, #3a0d22, #1a0610 55%, #0d0008);
-  background-attachment: fixed;
-  font-family: 'Outfit', sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 16px;
-}
+        /* Animation des petits coeurs en arrière-plan */
+        .hearts {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
 
-.particles { position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden; }
-.p { position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,100,165,0.45),transparent 70%); }
-.p:nth-child(1){width:260px;height:260px;top:-60px;left:-50px;animation:da 18s infinite alternate ease-in-out;}
-.p:nth-child(2){width:180px;height:180px;bottom:8%;right:-40px;animation:db 14s infinite alternate ease-in-out;}
-.p:nth-child(3){width:130px;height:130px;top:50%;left:65%;animation:dc 22s infinite alternate ease-in-out;}
-@keyframes da{to{transform:translate(40px,55px) scale(1.2)}}
-@keyframes db{to{transform:translate(-45px,-30px) scale(0.8)}}
-@keyframes dc{to{transform:translate(25px,-45px) scale(1.3)}}
+        .heart {
+            position: absolute;
+            color: var(--rose-color);
+            opacity: 0.5;
+            animation: float 6s infinite ease-in;
+        }
 
-.scene {
-  perspective: 1200px;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 460px;
-}
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
 
-.card {
-  background: linear-gradient(145deg, rgba(255,255,255,0.065), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,150,195,0.22);
-  border-radius: 40px;
-  padding: 32px 28px 36px;
-  text-align: center;
-  box-shadow:
-    0 40px 90px rgba(0,0,0,0.6),
-    0 15px 35px rgba(200,30,100,0.18),
-    inset 0 1px 0 rgba(255,200,225,0.18);
-  transform-style: preserve-3d;
-  transition: transform 0.1s ease-out;
-  animation: cardIn 0.75s cubic-bezier(0.22,1,0.36,1) both;
-  position: relative;
-}
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 85%;
+            animation: fadeIn 1.5s ease-out;
+        }
 
-.card::after {
-  content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,160,210,0.65),transparent);
-}
+        h1 {
+            color: var(--rose-color);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 107, 173, 0.5);
+        }
 
-@keyframes cardIn {
-  from{opacity:0;transform:translateY(40px) rotateX(8deg) scale(0.94);}
-  to{opacity:1;transform:translateY(0) rotateX(0deg) scale(1);}
-}
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
 
-.emoji-cake { font-size:2.4rem;display:block;margin-bottom:8px;filter:drop-shadow(0 4px 14px rgba(255,100,160,0.55)); }
+        .highlight {
+            font-style: italic;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            display: block;
+            margin-top: 10px;
+        }
 
-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(2.4rem, 10vw, 3.8rem);
-  line-height: 1.06;
-  margin-bottom: 0;
-  background: linear-gradient(155deg, #ffd6e8 0%, #ff6baa 45%, #ff1a6e 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 20px rgba(255,80,150,0.3));
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
 
-.message {
-  font-size: 0.92rem;
-  color: rgba(255,210,230,0.8);
-  font-weight: 300;
-  padding: 16px 20px;
-  border-radius: 24px;
-  margin: 20px 0;
-  border: 1px solid rgba(255,120,175,0.16);
-  background: rgba(255,50,120,0.07);
-  line-height: 1.7;
-}
+    <div class="hearts" id="heart-container"></div>
 
-.message strong { color:rgba(255,185,220,0.95);font-weight:500; }
-.message small { opacity:0.5;font-size:0.84em;display:block;margin-top:5px; }
+    <div class="card">
+        <h1>Joyeux anniversaire Rose ! 🌹</h1>
+        <p>
+            Une petite surprise digitale pour une personne exceptionnelle... 
+            <span class="highlight">(et parfois un peu pénible mais on t'aime quand même).</span>
+        </p>
+        <p><strong>Profite bien de ta journée, tu le mérites bien !</strong></p>
+    </div>
 
-.orbit-wrap {
-  position: relative;
-  width: 160px;
-  height: 160px;
-  margin: 4px auto 20px;
-}
+    <script>
+        // Un petit script pour créer des coeurs aléatoires
+        const container = document.getElementById('heart-container');
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        setInterval(createHeart, 400);
+    </script>
 
-.orb {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 46px; height: 46px;
-  margin: -23px 0 0 -23px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  background: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.26), rgba(255,100,160,0.1) 55%, rgba(0,0,0,0.22));
-  border: 1px solid rgba(255,165,210,0.32);
-  box-shadow: 0 6px 22px rgba(0,0,0,0.42), inset 0 1px 2px rgba(255,255,255,0.28);
-}
-
-.orb::before {
-  content:'';position:absolute;top:6px;left:8px;
-  width:28%;height:17%;
-  background:rgba(255,255,255,0.42);
-  border-radius:50%;filter:blur(2px);transform:rotate(-20deg);
-}
-
-.orb:nth-child(1){animation:orb 8s linear infinite 0s;}
-.orb:nth-child(2){animation:orb 8s linear infinite -1.33s;}
-.orb:nth-child(3){animation:orb 8s linear infinite -2.66s;}
-.orb:nth-child(4){animation:orb 8s linear infinite -4s;}
-.orb:nth-child(5){animation:orb 8s linear infinite -5.33s;}
-.orb:nth-child(6){animation:orb 8s linear infinite -6.66s;}
-
-@keyframes orb {
-  from { transform: rotate(0deg)   translateX(68px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(68px) rotate(-360deg); }
-}
-
-.btn {
-  background: linear-gradient(135deg, #ff6aaa, #e0155f);
-  border: 2px solid rgba(255,200,225,0.28);
-  padding: 15px 32px;
-  border-radius: 60px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  font-family: 'Outfit', sans-serif;
-  color: #fff;
-  cursor: pointer;
-  widt
+</body>
+</html>
